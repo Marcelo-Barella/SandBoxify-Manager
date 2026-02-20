@@ -26,7 +26,7 @@
   background-image: linear-gradient(
     90deg,
     transparent 0%,
-    var(--color-bg-elevated) 50%,
+    color-mix(in srgb, var(--color-text-primary) 5%, var(--color-bg-elevated)) 50%,
     transparent 100%
   );
   background-size: 200% 100%;
