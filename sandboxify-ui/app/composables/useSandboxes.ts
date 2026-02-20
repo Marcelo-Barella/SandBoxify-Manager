@@ -16,20 +16,27 @@ export function useSandboxes() {
 
   async function fetchSandboxes() {
     error.value = ''
-    await $fetch('/sandboxes', {
-      baseURL: config.public.sandboxifyApiUrl as string,
-      onRequest() {
-        isLoading.value = true
-      },
-      onResponse({ response }) {
-        sandboxes.value = response._data.sandboxes
-        isLoading.value = false
-      },
-      onResponseError({ response }) {
-        error.value = response._data?.error || 'Failed to load sandboxes'
-        isLoading.value = false
-      },
-    })
+    try {
+      await $fetch('/sandboxes', {
+        baseURL: config.public.sandboxifyApiUrl as string,
+        onRequest() {
+          isLoading.value = true
+        },
+        onResponse({ response }) {
+          sandboxes.value = response._data.sandboxes
+          isLoading.value = false
+        },
+        onResponseError({ response }) {
+          error.value = response._data?.error || 'Failed to load sandboxes'
+          isLoading.value = false
+        },
+      })
+    } catch (e: unknown) {
+      if (!error.value) {
+        error.value = e instanceof Error ? e.message : 'Failed to load sandboxes'
+      }
+      isLoading.value = false
+    }
   }
 
   async function createSandbox() {
