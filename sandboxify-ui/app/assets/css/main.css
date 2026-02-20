@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap');
+
+@import 'tailwindcss';
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-border: var(--border);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-muted: var(--accent-muted);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Space Grotesk', sans-serif;
+}
+
+:root {
+  --bg-primary: #0F0F0F;
+  --bg-surface: #1A1A1A;
+  --bg-elevated: #242424;
+  --border: #2E2E2E;
+  --text-primary: #F5F5F5;
+  --text-secondary: #A0A0A0;
+  --accent: #E8740C;
+  --accent-hover: #FF8C1A;
+  --accent-muted: #E8740C26;
+  --danger: #E53935;
+  --success: #43A047;
+}
+
+.light {
+  --bg-primary: #FAFAFA;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #F0F0F0;
+  --border: #E0E0E0;
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --accent: #D4680A;
+  --accent-hover: #E8740C;
+  --accent-muted: #D4680A1A;
+  --danger: #C62828;
+  --success: #2E7D32;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter-active {
+  animation: page-enter 300ms ease-out;
+}
+
+.page-leave-active {
+  animation: page-enter 300ms ease-out reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .page-enter-active,
+  .page-leave-active {
+    animation: none;
+    opacity: 1;
+  }
+}
